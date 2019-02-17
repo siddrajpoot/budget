@@ -1,0 +1,9 @@
+config.js
+ui/node_modules/**/*
+server/node_modules/**/*
+ui/.expo/*
+ui/npm-debug.*
+ui/*.jks
+ui/*.p12
+ui/*.key
+ui/*.mobileprovision
