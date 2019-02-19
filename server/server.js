@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
-  secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false,
+  secret: 'passport', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false,
 }))
 
 if (!isProduction) {
@@ -39,9 +39,8 @@ mongoose.set('debug', true)
 // Models & routes
 require('./auth/models/Users')
 require('./auth/config/passport')
+app.use(require('./api'))
 app.use(require('./auth/route'))
-
-app.use('/', require('./api/routes/plaid'))
 
 // Error handling
 if (!isProduction) {

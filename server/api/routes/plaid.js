@@ -23,8 +23,8 @@ router.post('/get_access_token', (req, res) => {
     }
     const { access_token } = tokenResponse
     const { item_id } = tokenResponse
-    console.log(`Access Token: ${access_token}`)
-    console.log(`Item ID: ${item_id}`)
+    // console.log(`Access Token: ${access_token}`)
+    // console.log(`Item ID: ${item_id}`)
     res.json({
       access_token,
       item_id,
@@ -37,8 +37,14 @@ router.post('/accounts/balace/get', (req, res) => {
   const ACCESS_TOKEN = 'access-development-d4e81fd2-a4a5-4cb6-8873-64230ee11a3e'
 
   client.getBalance(ACCESS_TOKEN, (err, result) => {
-    const { accounts } = result
-    console.log(accounts)
+    if (err) {
+      return res.json({ err })
+    }
+
+    const { accounts, status_code } = result
+    if (status_code === 200) {
+      res.json({ accounts })
+    }
   })
 })
 
